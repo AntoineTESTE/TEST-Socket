@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Socket IO Test</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="./style.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+
+
+
+</head>
+
+<body>
+  <ul id="messages"></ul>
+  <form>>
+    <input id="m" autocomplete="off" /><button>Send</button>
+  </form>
+
+
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    var socket = io();
+  </script>
+  <script>
+    $(function () {
+      $('form').submit(function (e) {
+        e.preventDefault();
+        socket.emit('chat message', $('#m').val());
+      });
+      return false;
+    });
+
+    const insert = (msg) => {
+      $('#message').append(`<div>${msg}</div>`);
+    }
+
+    socket.on('hey', insert);
+    socket.emit('get:messages', insert);
+  </script>
+
+
+
+  <div id="message"></div>
+
+
+</body>
+
+</html>
